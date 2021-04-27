@@ -31,15 +31,15 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String email;
 	private String genero;
-	private String endereço;
+	private String endereco;
 	private String cep;
 	private float salariBruto;
 	
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+		this.endereco = endereço;
 	}
 	public String getCep() {
 		return cep;
