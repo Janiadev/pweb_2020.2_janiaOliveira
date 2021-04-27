@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.janiaoliveira.cadpessoas.model.Pessoa;
-import br.com.janiaoliveira.cadpessoas.repository.PessoaRepository;
+import br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model.Cliente;
+import br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.repository.ClienteRepository;
+
 
 @Controller
 @RequestMapping("/")
 public class ClienteController {
 
 	@Autowired
-	PessoaRepository clienteRepo;
+	ClienteRepository clienteRepo;
 	
 	public String index() {
 		return "index.html";
@@ -25,7 +26,7 @@ public class ClienteController {
 	
 	@GetMapping("/listarClientes")
 	public ModelAndView listarclientes() {
-		List <cliente> lista = clienteRepo.findAll();
+		List <Cliente> lista = clienteRepo.findAll();
 		ModelAndView mav = new ModelAndView("listarClientes");
 		mav.addObject("cliente", lista);
 		return mav;
