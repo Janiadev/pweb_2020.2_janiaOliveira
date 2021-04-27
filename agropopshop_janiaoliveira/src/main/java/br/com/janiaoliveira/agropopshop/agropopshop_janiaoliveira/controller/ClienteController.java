@@ -56,4 +56,16 @@ public class ClienteController {
 		return modelAndView;
 	}
 	
+	@PostMapping("/editar/{id}")
+	public ModelAndView editarCliente(@PathVariable("id") long id, Cliente cliente)
+	{
+		clienteRepo.save(cliente);
+		return new ModelAndView("redirect:/listarClientes");
+	}
+	
+	@GetMapping("/remover/{id}")
+	public ModelAndView removerCliente(@PathVariable("id") long id) {
+		clienteRepo.deleteById(id);
+		return new ModelAndView("redirect:/listarClientes");
+	}
 }
