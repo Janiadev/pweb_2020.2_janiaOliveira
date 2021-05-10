@@ -10,16 +10,18 @@
 </head>
 <body>
 	<ul>
-        <li><a href="index.html">Início</a></li><hr>
+        <li><a href="/">Início</a></li><hr>
 		
-        <li><a href="adicionarClientes.html">Adicionar pesssoas</a></li>
-        <li><a href="listarClientes.html">listar clientes</a></li><hr>
+        <li><a href="/adicionarCliente">Adicionar pesssoas</a></li>
+        <li><a href="/listarClientes">listar clientes</a><hr>
         
     </ul>
     
     <div class="conteudo">
         <h1>Formulário para edição de clientes:</h1>
-        <form th:object="${cliente}" th:action="/editarCliente/{id}(id=cliente.id)" method="POST">
+        <form th:object="${cliente}" th:action="@{/editarCliente}" method="POST">
+        <input type="text" name="id" hidden id="id" th:field="*{id}">
+           
             <label for="nome">Nome completo *:</label>
             <input type="text" name="nome" id="nome" th:field="*{nome}" placeholder="seu Nome Completo"><br><br>
             <label for="">Data de Nacimento *:</label>
@@ -29,11 +31,11 @@
             
 
             <label for="">endereço*:</label>
-            <input type="text" id="endereço" th:field="*{endereco}" placeholder="rua tau"><br><br>
+            <input type="text" id="endereco" th:field="*{endereco}" placeholder="rua tau"><br><br>
             <label for="">cep*:</label>
             <input type="text" id="cep" th:field="*{cep}" placeholder="000000-000"><br><br>
             <label for="">salariobruto *:</label>
-            <input type="text" id="salaribruto" th:field="*{salariBruto}" placeholder=""><br><br>
+            <input type="text" id="salariBruto" th:field="*{salariBruto}" placeholder=""><br><br>
             
             <label for="e-mail"></label>
             <label for="sexo">Sexo *:</label><br>
@@ -48,7 +50,7 @@
       
             <input class="button" type="reset" value="Limpar">
             <input class="button" type="submit" value="cadastrar!">
-            <br><br><label for="">* campo obriggatorio</label>
+            <br><br><label for="">* campo obrigatório</label>
             
         </form>
     </div>

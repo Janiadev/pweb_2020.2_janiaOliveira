@@ -10,24 +10,20 @@
 </head>
 <body>
 	<ul>
-        <li><a href="/">Início</a></li><hr>
-		
-        <li><a href="/adicionarCliente">Adicionar pesssoas</a></li>
-        <li><a href="/listarClientes">listar clientes</a><hr>
+        <li><a href="index.html">Início</a></li><hr>
+		    <li><a href="adicionarClientes.html">Adicionar pesssoas</a></li>
+        <li><a class="active" href="listarClientes.html">listar clientes</a></li><hr>
         
     </ul>
     
     <div class="postagem">
-        <table border="1">
+        <table>
             <tr>
               <th>id</th>
               <th>Nome completo</th>
-              <th>E-Mail</th>
               <th>Data de Nacimento</th>
-              <th>Gênero</th>
-              <th>Endereço</th>
-              <th>CEP</th>
-              <th>Salário Bruto</th>
+              <th>e-Mail</th>
+              <th>sexo</th>
               <th>Editar</th>
               <th>Remover</th>
             </tr>
@@ -37,12 +33,12 @@
               <td> <a th:href="'mailto:'+${cliente.email}" th:text = ${cliente.email} ></a></td>
               <td th:text = "${#temporals.format(cliente.dataNascimento, 'dd/MM/yyyy')}"></td>
               <td th:text = "${cliente.genero}"></td>
-              <td th:text = "${cliente.endereco}"></td>
+              <td th:text = "${cliente.endereço}"></td>
               <td th:text = "${cliente.cep}"></td>
-              <td th:text = "${cliente.salariBruto}"></td>
+              <td th:text = "${cliente.salaribruto}"></td>
               
-              <td><a th:href="@{/editar/{id}(id=${cliente.id})}">Editar</a></td>
-              <td><a th:href="@{/remover/{id}(id=${cliente.id})}">Remover</a></td>
+              <td><a th:href="@{/editar/{id}(id = ${cliente.id})}">Editar</a></td>
+              <td><a th:href="@{/remover/{id}(id = ${cliente.id})}">Remover</a></td>
             </tr>
           
              

@@ -10,16 +10,16 @@
 </head>
 <body>
 	<ul>
-        <li><a href="/">Início</a></li><hr>
+        <li><a href="index.html">Início</a></li><hr>
 		
-        <li><a href="/adicionarCliente">Adicionar pesssoas</a></li>
-        <li><a href="/listarClientes">listar clientes</a><hr>
+        <li><a href="adicionarClientes.html">Adicionar pesssoas</a></li>
+        <li><a href="listarClientes.html">listar clientes</a></li><hr>
         
     </ul>
     
     <div class="conteudo">
         <h1>Formulário para edição de clientes:</h1>
-        <form th:object="${cliente}" th:action="@{/adicionarClientes}" method="POST">
+        <form th:object="${cliente}" th:action="/editarCliente/{id}(id=cliente.id)" method="POST">
             <label for="nome">Nome completo *:</label>
             <input type="text" name="nome" id="nome" th:field="*{nome}" placeholder="seu Nome Completo"><br><br>
             <label for="">Data de Nacimento *:</label>
