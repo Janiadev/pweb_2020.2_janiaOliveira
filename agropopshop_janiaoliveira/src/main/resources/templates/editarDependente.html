@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta  name="Codigo secreto" content="1778987077">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Web</title>
+</head>
+<body>
+	<ul>
+        <li><a href="/">Início</a></li><hr>
+		
+        <li><a href="/adicionarCliente">Adicionar pesssoas</a></li>
+        <li><a href="/listarClientes">listar clientes</a>
+        <li><a href="/adicionarDependente">Adicionar dependentes</a></li>
+        <li><a href="/listarDependentes">listar dependentes</a>
+        <hr>
+        <li><a href="/adicionarProduto">Adicionar produtos</a></li>
+         <li><a href="/listarProdutos">Listar produtos</a></li>
+    </ul>
+    
+    <div class="conteudo">
+        <h1>Formulário para edição de dependentes:</h1>
+        <form th:object="${dependente}" th:action="@{/editarDependente}" method="POST">
+            <input type="text" hidden name="id" th:field="*{id}" id="id">
+        	Selecione o cliente :
+			<select th:field="*{cliente.id}">
+				<option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
+					{cliente.nome}
+				</option>
+			</select>
+			<br/><br/>
+            <label for="nome">Nome completo *:</label>
+            <input type="text" name="nome" th:field="*{nome}" id="nome" placeholder="Seu Nome Completo"><br><br>
+ 
+            <label for="">Data de Nacimento *:</label>
+            <input type="date" th:field="*{dataNascimento}" id="data"  placeholder="Ex.: dd/mm/aaaa"><br><br>
+    
+            
+            <label for="e-mail"></label>
+            <label for="sexo">Sexo *:</label><br>
+            <input type="radio" th:field="*{genero}" name="genero" value="Masculino">
+            <label for="sexo">Masculino</label><br>
+            <input type="radio" th:field="*{genero}" name="genero" value="Feminino">
+            <label for="sexo">Feminino</label><br>
+            <input type="radio" name="genero" th:field="*{genero}" value="Não Informado">
+            <label for="sexo">Não informar</label><br><br>
+
+            <input class="button" type="reset" value="Limpar">
+            <input class="button" type="submit" value="Cadastrar!">
+            
+        </form>
+    </div>
+	
+</body>
+</html>

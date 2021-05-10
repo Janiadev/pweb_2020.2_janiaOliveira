@@ -22,8 +22,26 @@
     </ul>
     
     <div class="postagem">
-
-       
+        <table border="1">
+			<tr>
+				<th>Cliente</th>
+				<th>Nome completo</th>
+				<th>Data de Nacimento</th>
+				<th>sexo</th>
+				<th>Editar</th>
+				<th>Remover</th>
+			</tr>
+			<tr th:each="d: ${dependentes}">
+				<td th:text="${d.cliente.nome}"></td>
+				<td th:text="${d.nome}"></td>
+				<td th:text="${#temporals.format(d.dataNascimento, 'dd/MM/yyy')}"></td>
+				<td th:text="${d.genero}"></td>
+				<td>
+					<a th:href="@{/editarDependente/{id}(id=${d.id})}">Editar</a>
+				</td>
+                <td><a th:href="@{/removerDependente/{id}(id=${d.id})}">Remover</a></td>
+			</tr>
+          </table>
     </div>
 	
 </body>
