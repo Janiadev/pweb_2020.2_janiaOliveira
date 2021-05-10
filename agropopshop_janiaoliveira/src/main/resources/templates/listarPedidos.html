@@ -25,8 +25,36 @@
     </ul>
     
     <div class="postagem">
-
-       
+        <table border="1">
+			<tr>
+				<th>Cliente</th>
+				<th>Produto</th>
+				<th>Quantidade</th>
+				<th>Valor Unitário</th>
+				<th>Total</th>
+				<th>Total + impostos</th>
+				<th>Forma do pagamento</th>
+				<th>Cartão</th>
+				<th>Data de cadastro</th>
+				<th>Editar</th>
+				<th>Remover</th>
+			</tr>
+			<tr th:each="p: ${pedidos}">
+				<td th:text="${p.cliente.nome}"></td>
+				<td th:text="${p.produto.nome}"></td>
+				<td th:text="${p.quantidade}"></td>
+				<td th:text="${p.valorUnidade}"></td>
+				<td th:text="${p.total}"></td>
+				<td th:text="${p.totalComImpostos}"></td>
+				<td th:text="${p.formaDePagamento}"></td>
+				<td th:text="${p.cartao}"></td>
+				<td th:text="${#temporals.format(p.dataDeCadastro, 'dd/MM/yyy')}"></td>
+				<td>
+					<a th:href="@{/editarPedido/{id}(id=${p.id})}">Editar</a>
+				</td>
+                <td><a th:href="@{/removerPedido/{id}(id=${p.id})}">Remover</a></td>
+			</tr>
+          </table>
     </div>
 	
 </body>

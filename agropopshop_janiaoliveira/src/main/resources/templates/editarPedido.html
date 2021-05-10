@@ -25,32 +25,39 @@
     </ul>
     
     <div class="conteudo">
-        <h1>Formulário para edição de dependentes:</h1>
-        <form th:object="${dependente}" th:action="@{/editarDependente}" method="POST">
-            <input type="text" hidden name="id" th:field="*{id}" id="id">
-        	Selecione o cliente :
+        <h1>Formulário para edição de pedidos:</h1>
+        <form th:object="${pedido}" th:action="@{/editarPedido}" method="POST">
+        <input type="text" name="id" hidden id="id" th:field="*{id}">
+         Selecione o cliente :
 			<select th:field="*{cliente.id}">
 				<option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}">
 					{cliente.nome}
 				</option>
 			</select>
 			<br/><br/>
-            <label for="nome">Nome completo *:</label>
-            <input type="text" name="nome" th:field="*{nome}" id="nome" placeholder="Seu Nome Completo"><br><br>
- 
-            <label for="">Data de Nacimento *:</label>
-            <input type="date" th:field="*{dataNascimento}" id="data"  placeholder="Ex.: dd/mm/aaaa"><br><br>
+			
+			Selecione o produto :
+			<select th:field="*{produto.id}">
+				<option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nome}">
+					{produto.nome}
+				</option>
+			</select>
+			<br/><br/>
+            <label for="quantidade">quantidade *:</label>
+            <input type="text" name="nome" th:field="*{quantidade}" id="quantidade"><br><br>
     
             
             <label for="e-mail"></label>
-            <label for="sexo">Sexo *:</label><br>
-            <input type="radio" th:field="*{genero}" name="genero" value="Masculino">
-            <label for="sexo">Masculino</label><br>
-            <input type="radio" th:field="*{genero}" name="genero" value="Feminino">
-            <label for="sexo">Feminino</label><br>
-            <input type="radio" name="genero" th:field="*{genero}" value="Não Informado">
-            <label for="sexo">Não informar</label><br><br>
-
+            <label for="formaPagamento">Forma de Pagamento *:</label><br>
+            <input type="radio" th:field="*{formaDePagamento}" id="cartao" name="formaPagamento" value="Cartão">
+            <label for="cartao">Cartão</label><br>
+            <input type="radio" th:field="*{formaDePagamento}" id="dinheiro" name="formaPagamento" value="Dinheiro">
+            <label for="dinheiro">Dinheiro</label><br>
+            
+            <label for="cartao">Nº do Cartão *:</label>
+            <input type="text" name="cartao" th:field="*{cartao}" id="cartao"><br><br>
+           
+      
             <input class="button" type="reset" value="Limpar">
             <input class="button" type="submit" value="Cadastrar!">
             
