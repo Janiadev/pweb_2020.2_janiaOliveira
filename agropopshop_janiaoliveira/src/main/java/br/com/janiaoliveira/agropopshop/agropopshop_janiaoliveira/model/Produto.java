@@ -1,11 +1,14 @@
 package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -27,6 +30,9 @@ public class Produto implements Serializable {
 	private double profundidade;
 	private double peso;
 	private double preco;
+	
+	@OneToMany(mappedBy = "produto", cascade = {CascadeType.REMOVE}, targetEntity = Pedido.class)
+	private List<Pedido> pedidos;
 	
 	public Long getId() {
 		return id;

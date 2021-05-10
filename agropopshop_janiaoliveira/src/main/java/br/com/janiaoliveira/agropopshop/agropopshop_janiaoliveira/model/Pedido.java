@@ -29,12 +29,12 @@ public class Pedido implements Serializable {
 
 	private LocalDate dataDeCadastro;
 
-	@ManyToOne
+	@ManyToOne(targetEntity = Cliente.class)
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	@ManyToOne
-	@JoinColumn(name = "produto_codigo")
+	@ManyToOne(targetEntity = Produto.class)
+	@JoinColumn(name = "produto_id")
 	private Produto produto;
 
 	public double getTotal() {

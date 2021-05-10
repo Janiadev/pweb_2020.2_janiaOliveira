@@ -2,12 +2,15 @@ package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +38,13 @@ public class Cliente implements Serializable {
 	private String cep;
 	private float salariBruto;
 	
+	@OneToMany(mappedBy = "cliente", cascade = {CascadeType.REMOVE}, targetEntity = Pedido.class)
+	private List<Pedido> pedidos;
+	
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd" )
+	private LocalDate dataNascimento;
+	
 	public String getEndereco() {
 		return endereco;
 	}
@@ -53,9 +63,6 @@ public class Cliente implements Serializable {
 	public void setSalariBruto(float salariBruto) {
 		this.salariBruto = salariBruto;
 	}
-	@Column(nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd" )
-	private LocalDate dataNascimento;
 	
 	public long getId() {
 		return id;
@@ -87,7 +94,6 @@ public class Cliente implements Serializable {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	
 	
 
 }
