@@ -1,6 +1,8 @@
 package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "produtos")
 public class Produto implements Serializable {
@@ -19,7 +20,7 @@ public class Produto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,12 +31,18 @@ public class Produto implements Serializable {
 	private double profundidade;
 	private double peso;
 	private double preco;
-	
-	@OneToMany(mappedBy = "produto", cascade = {CascadeType.REMOVE}, targetEntity = Pedido.class)
+
+	@OneToMany(mappedBy = "produto", cascade = { CascadeType.REMOVE }, targetEntity = Pedido.class)
 	private List<Pedido> pedidos;
-	
+
 	public Long getId() {
 		return id;
+	}
+
+	public BigDecimal getVolumeDoProduto() {
+		double volume = altura * largura * profundidade;
+		BigDecimal v2 = new BigDecimal(volume);
+		return v2.setScale(2, RoundingMode.HALF_EVEN);
 	}
 
 	public void setId(Long id) {
