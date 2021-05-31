@@ -29,6 +29,14 @@
     </ul>
 
 	<div class="postagem">
+	<h1>Filtrar produtos pelo nome</h1>
+         <form method="POST" th:action="@{/listarProdutos}">
+                Nome*: <input type="text" name="produto" placeholder="nome" />
+                <br />
+                <input type="submit" class="botao" value="Filtrar!"/>
+                
+         </form>
+         <br/>
 		<table border="1">
 			<thead>
 				<tr>

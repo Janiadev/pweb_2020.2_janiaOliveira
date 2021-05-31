@@ -8,4 +8,6 @@ import br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	List<Produto> findAllByOrderByNomeAsc();
+	
+	List<Produto> findAllByNomeStartingWithIgnoreCase(String nome);
 }

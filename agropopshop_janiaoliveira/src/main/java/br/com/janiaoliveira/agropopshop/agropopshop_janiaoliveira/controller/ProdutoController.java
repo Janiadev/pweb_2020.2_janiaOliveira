@@ -1,5 +1,6 @@
 package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,20 @@ public class ProdutoController {
 	public ModelAndView listarProdutos() {
 		List<Produto> lista = produtoRepo.findAll();
 		ModelAndView mav = new ModelAndView("listarProduto");
+		mav.addObject("produtos", lista);
+		return mav;
+	}
+	
+	@PostMapping("/listarProdutos")
+	public ModelAndView listarProdutos(String produto) {
+		List<Produto> lista = new ArrayList<>();
+		if(produto.isEmpty()) {
+			lista = produtoRepo.findAll();
+		} else {
+			lista = produtoRepo.findAllByNomeStartingWithIgnoreCase(produto);
+		}
+		ModelAndView mav = new ModelAndView("listarProduto");
+		mav.addObject("produto",produto);
 		mav.addObject("produtos", lista);
 		return mav;
 	}
