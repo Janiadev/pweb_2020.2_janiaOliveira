@@ -67,6 +67,28 @@
 				<td><a th:href="@{/removerProduto/{id}(id=${produto.id})}">Remover</a></td>
 			</tr>
 		</table>
+		<hr/>
+		<h1>Fretes para Marte</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th scope="col">Código</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Volume</th>
+					<th scope="col">Peso</th>
+					<th scope="col">Preço</th>
+					<th scope="col">Frete</th>
+				</tr>
+			</thead>
+			<tr th:each="produto: ${fretes}">
+				<td th:text="${produto.id}"></td>
+				<td th:text="${produto.nome}"></td>
+				<td th:text="${produto.volumeDoProduto}"></td>
+				<td th:text="${produto.peso}"></td>
+				<td th:text="${produto.preco}"></td>
+				<td th:text="${produto.freteParaMarte}"></td>
+			</tr>
+		</table>
 	</div>
 
 </body>

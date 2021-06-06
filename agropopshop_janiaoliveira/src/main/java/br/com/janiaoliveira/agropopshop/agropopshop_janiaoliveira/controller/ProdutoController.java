@@ -1,6 +1,8 @@
 package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,15 @@ public class ProdutoController {
 	public ModelAndView listarProdutos() {
 		List<Produto> lista = produtoRepo.findAll();
 		ModelAndView mav = new ModelAndView("listarProduto");
+		List<Produto> fretes = produtoRepo.findAll();
+		Collections.sort(fretes, new Comparator<Produto>() {
+			public int compare(Produto p1, Produto p2) {
+				return p2.getVolumeDoProduto().compareTo(p1.getVolumeDoProduto());
+			};
+		});
+		
 		mav.addObject("produtos", lista);
+		mav.addObject("fretes", fretes);
 		return mav;
 	}
 	
@@ -50,8 +60,16 @@ public class ProdutoController {
 			lista = produtoRepo.findAllByNomeStartingWithIgnoreCase(produto);
 		}
 		ModelAndView mav = new ModelAndView("listarProduto");
+		List<Produto> fretes = produtoRepo.findAll();
+		Collections.sort(fretes, new Comparator<Produto>() {
+			public int compare(Produto p1, Produto p2) {
+				return p2.getVolumeDoProduto().compareTo(p1.getVolumeDoProduto());
+			};
+		});
+		
 		mav.addObject("produto",produto);
 		mav.addObject("produtos", lista);
+		mav.addObject("fretes", fretes);
 		return mav;
 	}
 	

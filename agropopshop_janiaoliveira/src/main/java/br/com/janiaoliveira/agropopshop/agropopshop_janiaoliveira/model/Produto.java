@@ -45,6 +45,11 @@ public class Produto implements Serializable {
 		return v2.setScale(2, RoundingMode.HALF_EVEN);
 	}
 
+	public BigDecimal getFreteParaMarte() {
+		double frete = getPeso() * 123456.00;
+		return new BigDecimal(frete).setScale(2, RoundingMode.HALF_EVEN);
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
