@@ -3,6 +3,7 @@ package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,6 +33,8 @@ public class Produto implements Serializable {
 	private double peso;
 	private double preco;
 
+	private Calendar dataCadastro;
+
 	@OneToMany(mappedBy = "produto", cascade = { CascadeType.REMOVE }, targetEntity = Pedido.class)
 	private List<Pedido> pedidos;
 
@@ -48,6 +51,12 @@ public class Produto implements Serializable {
 	public BigDecimal getFreteParaMarte() {
 		double frete = getPeso() * 123456.00;
 		return new BigDecimal(frete).setScale(2, RoundingMode.HALF_EVEN);
+	}
+
+	public BigDecimal getDesconto() {
+		double porcentagem = 3.018735 / 100;
+		double desconto = preco * (1 - porcentagem);
+		return new BigDecimal(desconto).setScale(2, RoundingMode.HALF_EVEN);
 	}
 
 	public void setId(Long id) {
@@ -108,5 +117,13 @@ public class Produto implements Serializable {
 
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+
+	public Calendar getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Calendar dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 }

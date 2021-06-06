@@ -89,6 +89,22 @@
 				<td th:text="${produto.freteParaMarte}"></td>
 			</tr>
 		</table>
+		<hr/>
+		<h1>Produtos com desconto</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th scope="col">Nome</th>
+					<th scope="col">Preço</th>
+					<th scope="col">Desconto</th>
+				</tr>
+			</thead>
+			<tr th:each="produto: ${descontos}">
+				<td th:text="${produto.nome}"></td>
+				<td th:text="${produto.preco}"></td>
+				<td th:text="${produto.desconto}"></td>
+			</tr>
+		</table>
 	</div>
 
 </body>

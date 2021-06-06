@@ -10,4 +10,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	List<Produto> findAllByOrderByNomeAsc();
 	
 	List<Produto> findAllByNomeStartingWithIgnoreCase(String nome);
+	
+	List<Produto> findTop4ByOrderByDataCadastroDesc();
 }

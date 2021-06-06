@@ -1,6 +1,7 @@
 package br.com.janiaoliveira.agropopshop.agropopshop_janiaoliveira.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ProdutoController {
 
 	@PostMapping("/adicionarProduto")
 	public ModelAndView adicionarClientes(Produto produto) {
+		produto.setDataCadastro(Calendar.getInstance());
 		produtoRepo.save(produto);
 		return new ModelAndView("redirect:/listarProdutos");
 	}
@@ -45,9 +47,15 @@ public class ProdutoController {
 				return p2.getVolumeDoProduto().compareTo(p1.getVolumeDoProduto());
 			};
 		});
-		
+		List<Produto> descontos = produtoRepo.findTop4ByOrderByDataCadastroDesc();
+		Collections.sort(descontos, new Comparator<Produto>() {
+			public int compare(Produto p1, Produto p2) {
+				return p2.getDesconto().compareTo(p1.getDesconto());
+			};
+		});
 		mav.addObject("produtos", lista);
 		mav.addObject("fretes", fretes);
+		mav.addObject("descontos", descontos);
 		return mav;
 	}
 	
@@ -61,6 +69,12 @@ public class ProdutoController {
 		}
 		ModelAndView mav = new ModelAndView("listarProduto");
 		List<Produto> fretes = produtoRepo.findAll();
+		List<Produto> descontos = produtoRepo.findTop4ByOrderByDataCadastroDesc();
+		Collections.sort(descontos, new Comparator<Produto>() {
+			public int compare(Produto p1, Produto p2) {
+				return p2.getDesconto().compareTo(p1.getDesconto());
+			};
+		});
 		Collections.sort(fretes, new Comparator<Produto>() {
 			public int compare(Produto p1, Produto p2) {
 				return p2.getVolumeDoProduto().compareTo(p1.getVolumeDoProduto());
@@ -70,6 +84,7 @@ public class ProdutoController {
 		mav.addObject("produto",produto);
 		mav.addObject("produtos", lista);
 		mav.addObject("fretes", fretes);
+		mav.addObject("descontos", descontos);
 		return mav;
 	}
 	
